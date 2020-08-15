@@ -1,0 +1,139 @@
+{% load staticfiles %}
+{% static "" as img %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>{{ data.name }} hospital</title>
+	<link rel="icon" href="{% static 'assets/img/logo.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+<style>
+.imgs {
+	margin-left:1000px;
+	border-radius:15px;
+}
+</style>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+			<div class="header-left">
+				<a href="index.html" class="logo">
+					<img src="{% static 'assets/img/logo.png' %}" width="35" height="35" alt=""> <span>Touch of Care</span>
+				</a>
+				
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+				<li>
+				<form action="{% url 'appoit' %}" method="post">{% csrf_token %}
+				<button type="submit"  style="margin-top:10px;margin-right:2px;color:red;" class="imgs">Add Reception</button>
+			</form>
+			</li>
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img"><img class="rounded-circle" src="{% static 'assets/img/user.jpg' %}" width="40" alt="Admin">
+							<span class="status online"></span></span>
+                        <span>Hospital</span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">My Profile</a>
+						<a class="dropdown-item" href="{% url 'edit_hos' %}">Edit Profile</a>
+						<a class="dropdown-item" href="#">Settings</a>
+						<a class="dropdown-item" href="{% url 'out' %}">Logout</a>
+					</div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="{% url 'edit_hos' %}">Edit Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="{% url 'out'%}">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+                        <li class="active">
+                            <a href="{% url 'hm_hosp' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'hos_doc_vw' %}"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'hos_phar_vw' %}"><i class="fa fa-medkit"></i> <span>Pharmacy</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'hos_lab_vw' %}"><i class="fa fa-flask"></i> <span>Laboratory</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+		<form action="{% url 'fresh' %}" method="post">{% csrf_token %}
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                        <div class="dash-widget">
+							<span class="dash-widget-bg1"><i class="fa fa-user-md" aria-hidden="true"></i></span>
+							<div class="dash-widget-info text-right">
+								<h3>{{dat.doc}}</h3>
+								<span class="widget-title1">Doctor<i class="fa fa-check" aria-hidden="true"></i></span>
+							</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                        <div class="dash-widget">
+                            <span class="dash-widget-bg3"><i class="fa fa-medkit" aria-hidden="true"></i></span>
+                            <div class="dash-widget-info text-right">
+                                <h3>{{dat.pha}}</h3>
+                                <span class="widget-title3">Pharmacy<i class="fa fa-check" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                        <div class="dash-widget">
+                            <span class="dash-widget-bg4"><i class="fa fa-flask" aria-hidden="true"></i></span>
+                            <div class="dash-widget-info text-right">
+                                <h3>{{dat.lab}}</h3>
+                                <span class="widget-title4">Laboratory <i class="fa fa-check" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				</div>
+				<button type="submit"  class="imgs">Refresh</button>
+            </div>
+			</form>
+        </div>
+		
+		
+    <div class="sidebar-overlay" data-reff=""></div>
+	<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/js/Chart.bundle.js' %}"></script>
+    <script src="{% static 'assets/js/chart.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+{% load staticfiles %}
+{% static "" as img %}
+<!DOCTYPE html>
+<head>
+	<title>Registration</title>
+	<link rel="icon" href="{% static 'index/img/icon.png' %}" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{% static 'reg/css/style.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{% static 'reg/css/styles.css' %}">
+	
+</head>
+<body>
+	<img class="wave" src="{% static 'reg/img/wave.png' %}">
+	<div class="container">
+		<div class="img">
+			<ul class="h1">
+				<li class="s1">
+					<div class="r1">
+						<div class="t1">
+						<a href="{% url 'login' %}"><h4>Sign in</h4></a>
+						</div>
+					</div></li>
+				<li class="s1">
+					<div class="r1">
+						<div class="t1" id="active">
+						<a href="{% url 'register' %}"><h4>Sign Up</h4></a>
+						</div>
+					</div></li>
+				<li class="s1">
+					<div class="r1">
+						<div class="t1">
+						<a href="{% url 'hosp' %}"><h4>Hospital</h4></a>
+						</div>
+					</div></li>
+				<li class="s1">
+					<div class="r1">
+						<div class="t1">
+						<a href="{% url 'phar' %}"><h4>Pharmacy</h4></a>
+						</div>
+					</div></li>
+				<li class="s1">
+				<div class="r1">
+					<div class="t1">
+					<a href="{% url 'lab' %}"><h4>Labouratory</h4></a>
+					</div>
+				</div></li>
+			</ul>
+		</div>
+		<div class="login-content">
+			<form action="{% url 'patient_reg' %}" method="post">{% csrf_token %}
+				<img src="{% static 'reg/img/avatar.svg' %}">
+				<h3>Patient</h3>
+				<h2 class="title">Welcome</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Name</h5>
+           		   		<input type="text" class="input" autocomplete="off" name="name" required>
+           		   </div>
+           		</div>
+				<div class="input-div1 one">
+					<div class="gender">
+						<h5><i class="fa fa-location-arrow"></i>&nbsp;&nbsp; Location</h5>
+					</div>
+				</div>
+					<select name="loc" class="opt" style="background-color: #fff;color: #000; width:200px;" required>
+						<option selected disabled>Select District</option>
+						<option value="Alappuzha">Alappuzha</option>
+			       		<option value="Ernakulam">Ernakulam </option>
+					    <option value="Idukki">Idukki</option>
+						<option value="Kannur">Kannur</option>
+			     	    <option value="Kasaragod">Kasaragod</option>
+						<option value="Kollam">Kollam</option>
+					    <option value="Kottayam">Kottayam</option>
+						<option value="Kozhikode">Kozhikode </option>
+						<option value="Malappuram">Malappuram</option>
+					    <option value="Palakkad">Palakkad</option>
+						<option value="Pathanamthitta">Pathanamthitta</option>   
+						<option value="Thiruvananthapuram">Thiruvananthapuram</option>
+						<option value="Thrissur">Thrissur</option>
+						<option value="Wayanad">Wayanad</option>   
+					</select>
+				<div class="input-div1 one">
+					<div class="gender">
+						<h5>Gender</h5>
+					</div>
+				</div>
+					<div class="same">
+						<input type="radio" class="rr" name="gender" value="male" required><label>Male</label>
+						<input type="radio" class="re" name="gender" value="female" required><label>Female</label>
+					</div>
+				<div class="input-div1 one">
+					<div class="gender">
+						<h5><i class="fa fa-calendar"></i>&nbsp;&nbsp; Date of Birth</h5>
+					<div class="div">
+						<input type="date" class="datess" name="date" required>
+					</div>
+				</div>
+				<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fa fa-phone-square"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Mobile No:</h5>
+           		   		<input type="tel" class="input" name="phone" autocomplete="off" pattern="[0-9]{10}" maxlength="10" required>
+           		   </div>
+           		</div>
+				<div class="input-div1 one">
+					<div class="gender">
+						<h5><i class="fas fa-tint"></i>&nbsp;&nbsp; Blood Group</h5>
+					</div>
+				</div>
+				<div class="option">
+					<select class="opt" name="bld" id="bld" style="background:#fff; width:160px">
+						<option selected disabled>Select Group</option>
+						<option value="A+ve">A+ve</option>
+						<option value="A-ve">A-ve</option>
+						<option value="B+ve">B+ve</option>
+						<option value="B-ve">B-ve</option>
+						<option value="AB+ve">AB+ve</option>
+						<option value="AB-ve">AB-ve</option>
+						<option value="O+ve">O+ve</option>
+						<option value="O-ve">O-ve</option>
+					</select>
+				</div>
+				<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fa fa-envelope"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Email</h5>
+           		   		<input type="email" class="input" autocomplete="off" name="email" required>
+           		   </div>
+           		</div>
+				<div class="input-div1 one">
+           		   <div class="gender">
+						
+           		   		<h5><i class="fa fa-address-card"></i>&nbsp;&nbsp; Address</h5>
+					</div>
+           		   		<textarea class="address" name="add" rows="6" cols="45" required> </textarea>
+           		</div>
+				&nbsp;
+				&nbsp;
+				<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fa fa-user-circle"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Username</h5>
+           		   		<input type="text" class="input" autocomplete="off" name="uname" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 5-8 charac" maxlength="8" size="8" required>
+						<span class="validity"></span>
+						
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" class="input" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&~?]).{6,}"
+  title="Must contain at least one  number and one uppercase and lowercase letter and special character, and at least 6 or more characters" name="pass" id="password" required>
+						<span class="validity"></span>
+            	   </div>
+            	</div>
+				<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Confirm Password</h5>
+           		    	<input type="password" class="input" autocomplete="off" name="pass" id="con_password" required>
+            	   </div>
+            	</div>
+            	<button type="submit" class="btn" onclick="return Validate()">Register</button>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'reg/js/main.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+<script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("con_password").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

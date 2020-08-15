@@ -1,0 +1,210 @@
+{% load staticfiles %}
+{% static "" as img %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Add Hospitals</title>
+	<link rel="icon" href="{% static 'assets/img/logo.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+    <div class="main-wrapper">
+	<div class="header">
+			<div class="header-left">
+				<a href="index.html" class="logo">
+					<img src="{% static 'assets/img/logo.png' %}" width="35" height="35" alt=""> <span>Touch of Care</span>
+				</a>
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img">
+							<img class="rounded-circle" src="{% static 'assets/img/user.jpg' %}" width="24" alt="Admin">
+							<span class="status online"></span>
+						</span>
+						<span>Admin</span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">My Profile</a>
+						<a class="dropdown-item" href="#">Edit Profile</a>
+						<a class="dropdown-item" href="#">Settings</a>
+						<a class="dropdown-item" href="{% url 'out' %}">Logout</a>
+					</div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="{% url 'out' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+                        <li>
+                            <a href="{% url 'main' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+						<li class="active">
+                            <a href="{% url 'ad_hosp_vw' %}"><i class="fa fa-hospital-o"></i> <span>Hospitals</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'ad_pha_vw' %}"><i class="fa fa-medkit"></i> <span>Pharmacy</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'ad_lab_vw' %}"><i class="fa fa-flask"></i> <span>Laboratory</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'ad_pat_vw' %}"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
+                        </li>
+						<li class="submenu">
+							<a href="#"><i "fa fa-check-square-o"></i> <span> Approvals </span> <span class="menu-arrow"></span></a>
+							<ul style="display: none;">
+								<li><a href="{% url 'app_hos' %}">Hospital</a></li>
+								<li><a href="{% url 'app_lab' %}">Laboratory</a></li>
+								<li><a href="{% url 'app_pha' %}">Pharmacy</a></li>
+							</ul>
+						</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title">Add Hospital</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form action="{% url 'adm_hosp' %}" method="post">{% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Hospital Name <span class="text-danger">*</span></label>
+                                        <input class="form-control" name="hosname" type="text" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Location<span class="text-danger">*</span></label>
+										<select name="loc" class="form-control" style="background-color: #fff;color: #000;" required>
+												<option selected disabled>Select Location</option>
+												<option value="Alappuzha">Alappuzha</option>
+												<option value="Ernakulam">Ernakulam </option>
+												<option value="Idukki">Idukki</option>
+												<option value="Kannur">Kannur</option>
+												<option value="Kasaragod">Kasaragod</option>
+												<option value="Kollam">Kollam</option>
+												<option value="Kottayam">Kottayam</option>
+												<option value="Kozhikode">Kozhikode </option>
+												<option value="Malappuram">Malappuram</option>
+												<option value="Palakkad">Palakkad</option>
+												<option value="Pathanamthitta">Pathanamthitta</option>   
+												<option value="Thiruvananthapuram">Thiruvananthapuram</option>
+												<option value="Thrissur">Thrissur</option>
+												<option value="Wayanad">Wayanad</option>   
+										</select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="email" autocomplete="off" name="email" required>
+                                    </div>
+                                </div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Website<span class="text-danger">*</span></label>
+                                        <input class="form-control" type="url" autocomplete="off" name="web" required>
+                                    </div>
+                                </div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Username <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" autocomplete="off" name="uname" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 4-8 characters" maxlength="8" size="8" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Password<span class="text-danger">*</span></label>
+                                        <input class="form-control" type="password" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&~?]).{6,}"
+  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 6 or more characters" name="pass" id="pwd" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Confirm Password<span class="text-danger">*</span></label>
+                                        <input class="form-control" id="cpwd" type="text" autocomplete="off" required>
+                                    </div>
+                                </div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Contact Person<span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="coname" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Phone<span class="text-danger">*</span></label>
+                                        <input class="form-control" type="tel" name="phone" pattern="[0-9]{10}" maxlength="10" required>
+                                    </div>
+                                </div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Address<span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="address" name="add" rows="6" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Add Hospital</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("pwd").value;
+        var confirmPassword = document.getElementById("cpwd").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
+    <div class="sidebar-overlay" data-reff=""></div>
+	<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/js/Chart.bundle.js' %}"></script>
+    <script src="{% static 'assets/js/chart.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+</body>
+
+</html>

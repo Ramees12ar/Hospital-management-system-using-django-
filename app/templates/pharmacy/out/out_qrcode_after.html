@@ -1,0 +1,241 @@
+{% load staticfiles %}
+{% static "" as img %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>{{ user.name}}</title>
+	<link rel="icon" href="{% static 'assets/img/logo.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'patient/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'patient/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'patient/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'patient/css/ionicons.min.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'patient/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'patient/css/data.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+<style>
+.imgs {
+	margin-left:1000px;
+	border-radius:15px;
+}
+table, th, td {
+  border: 2px solid #ba2424;
+  text-align: center;
+  margin-top:-40px;
+}
+table {
+  counter-reset: section;
+}
+
+.count:before {
+  counter-increment: section;
+  content: counter(section);
+}
+</style>
+</head>
+
+<body>
+        <div class="main-wrapper">
+	<div class="header">
+			<div class="header-left">
+				<a href="index.html" class="logo">
+					<img src="{% static 'assets/img/logo.png' %}" width="35" height="35" alt=""> <span>Touch of Care</span>
+				</a>
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img">
+							<img class="rounded-circle" src="{% static 'assets/img/user.jpg' %}" width="24" alt="Admin">
+							<span class="status online"></span>
+						</span>
+						<span>{{ user.name}}</span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">My Profile</a>
+						<a class="dropdown-item" href="#">Edit Profile</a>
+						<a class="dropdown-item" href="#">Settings</a>
+						<a class="dropdown-item" href="{% url 'out' %}">Logout</a>
+					</div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="{% url 'out' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll" style="border-width:10px">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+                        <li class="active">
+                            <a href="{% url 'aa_o_pha_hm' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'ee_vw' %}"><i class="fa fa-medkit"></i> <span>Medicine list</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'vv_med_add' %}"><i class="fa fa-medkit"></i> <span>Add Medicine</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+		<br></br>
+		<div class="row">
+            <div class="col-lg-8 offset-lg-2">
+				<div class="raw">
+					<div class="col-sm-6">
+						<div class="form-group">
+                            <label>Name :</label>
+							<input class="form-control" name="name" value="{{ data.name}}" type="text" autocomplete="off" readonly>
+                        </div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+                            <label>	Age :</label>
+							<input class="form-control" name="age" value="{{ data.age }}" type="text" autocomplete="off" readonly>
+                        </div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+                            <label>Date :</label>
+							<input class="form-control" name="date" type="text" value="{{ data.date}}" autocomplete="off" readonly>
+                        </div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+                            <label>Place :</label>
+							<input class="form-control" name="place" value="{{ data.place }}" type="text" autocomplete="off" readonly>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br></br>
+<div class="page-wrap">
+            <div class="content">
+		 <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+		<a class="cta-link element-animate">
+      <!-- <span class="sub-heading">Ready to Visit?</span> -->
+			<table id="tb2" style="width:100%">
+<h1 class="hhh">Prescription</h1>
+<br><br>
+<thead>
+    <tr>
+	<th>No.</th><th>Date</th><th> Patient Name &nbsp;&nbsp;&nbsp;</th><th>Disease</th><th>Medicine &nbsp;&nbsp;&nbsp;</th><th>Doctor</th><th>Timing/day &nbsp;&nbsp;&nbsp;</th><th>Status</th>
+    </tr>
+    </thead>
+<tbody>
+    {% for i in phar %}
+        <tr>
+		<form action="{% url 'mout_pstatus' %}" method="post">{% csrf_token %}
+		<td class="count"></td>
+		<td>
+			<input type="text" name="date" style="display:none;" value="{{ i.date }}">&nbsp;{{ i.date }}
+        </td>
+		<td>
+			<input type="text" name="name" style="display:none;" value="{{ data.name }}">&nbsp;{{ data.name }}
+        </td>
+		<td>
+			<input type="text" name="dis" style="display:none;" value="{{ i.disease }}">&nbsp;{{ i.disease }}
+        </td>
+        <td>
+            <input type="text" name="med" value="{{ i.med }}" style="display:none;">&nbsp;{{ i.med }}
+		</td>
+        <td>
+            <input type="text" name="hos" value="{{ i.hos }}" style="display:none;">
+			<input type="text" name="pharm" value="{{ name }}" style="display:none;">
+			<input type="text" name="doc" value="{{ i.doc }}" style="display:none;">{{ i.doc }}
+        </td>
+		<td>
+            <input type="text" name="llid" value="{{i.llid}}" style="display:none;">
+			<input type="text" name="t" value="{{ i.timing }}" style="display:none;">{{ i.timing }}/{{ i.days }}
+			<input type="text" name="d" value="{{ i.days }}" style="display:none;">
+        </td>
+            <input type="text" name="place" value="" style="display:none;">&nbsp;
+			<input type="text" name="pt" value="{{ i.pid }}" style="display:none;">
+			<td style="width: 1%;">
+		<div class="form-group">
+				<input type="submit" class="btn btn-primary" onclick="change()" value="Give">
+         </div>
+		</td>
+        </tr>
+		</form>
+    {% endfor %}
+</tbody>
+</table>
+
+  </div>
+</section>
+</div>
+</div>
+<footer class="ftc">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made With <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="{% url 'index' %}" target="_blank">team TOC</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+    </footer>
+<div class="sidebar-overlay" data-reff=""></div>
+<script>
+function change() // no ';' here
+{
+    document.getElementById("myButton2").innerHTML="Given";
+}
+</script>
+	<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/js/Chart.bundle.js' %}"></script>
+    <script src="{% static 'assets/js/chart.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+	
+	<script src="{% static 'patient/js/jquery.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'patient/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'patient/js/aos.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'patient/js/scrollax.min.js' %}"></script>
+  <script src="{% static 'patient/js/main.js' %}"></script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% load staticfiles %}
+{% static "" as img %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ user.name }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{% static 'index/img/patient.png' %}" type="image/x-icon">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'patient/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'patient/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'patient/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'patient/css/ionicons.min.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'patient/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'patient/css/data.css' %}">
+
+ <style>
+table, th, td {
+  border: 2px solid #ba2424;
+  text-align: center;
+  color: black;
+}
+.h2{
+	text-align:center;
+	margin-top:100px;
+	margin-bottom:-120px;
+	font-weight:bold;
+}
+</style>
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+	  
+	  
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html"><span>T</span>ouch of Care</a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="{% url 'pat_hm' %}" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+	          <li class="nav-item dropdown">
+                <a class="nav-link" href="{% url 'pt_hm_book' %}" id="dropdown04" style="color: #007bff;">Booking</a>
+              </li>
+	          <li class="nav-item dropdown">
+                <a class="nav-link" href="{% url 'vw_dr' %}" id="dropdown04" style="color: #007bff;">Appointments</a>
+              </li>
+			  <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+	          <li class="nav-item"><a href="{% url 'out' %}" class="nav-link"><span>Log Out</span></a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	 <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+		<a class="cta-link element-animate">
+      <!-- <span class="sub-heading">Ready to Visit?</span> -->
+			<table id="tb2" style="width:100%">
+			<h5 class="h2">Appointments</h4>
+<br></br>
+<br></br>
+<br></br>
+<thead>
+    <tr>
+	<th>&nbsp;&nbsp;&nbsp; Hospital &nbsp;&nbsp;&nbsp;</th><th>Department &nbsp;&nbsp;&nbsp;</th><th>Doctor &nbsp;&nbsp;&nbsp;</th><th>Time &nbsp;&nbsp;&nbsp;</th><th>Status</th>
+    </tr>
+    </thead>
+<tbody>
+    {% for i in vw %}
+	
+        <tr>
+        <td>
+            <input type="text" name="name" value="{{ i.hos_name }}" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;{{ i.hosp_name }}
+        </td>
+		<td>
+			<input type="text" name="spec" style="display:none;" value="{{ i.ph_no }}">&nbsp;{{ i.specialization }}
+        </td>
+        <td>
+            <input type="text" name="dr" value="{{ i.dr_name }}" style="display:none;">&nbsp;{{ i.dr_name }}
+		</td>
+		<td>
+            <input type="text" name="time" value="{{ i.time }}" style="display:none;">&nbsp;{{ i.time }}
+		</td>
+        <td>
+			<input type="text" name="dr" value="{{ i.status }}" style="display:none;">&nbsp;{{ i.status }}
+            <input type="text" name="out" value="out" style="display:none;">
+			<input type="text" name="uname" value="{{ i.user }}" style="display:none;">
+			<input type="text" name="pass" value="{{ i.passw }}" style="display:none;">
+        </td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+  </div>
+</section>
+  <!-- loader -->
+  <br></br>
+<footer class="ftc">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made With <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="{% url 'index' %}" target="_blank">team TOC</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+    </footer>
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>
+  
+  
+  <script src="{% static 'patient/js/jquery.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'patient/js/popper.min.js' %}"></script>
+  <script src="{% static 'patient/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'patient/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'patient/js/aos.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'patient/js/scrollax.min.js' %}"></script>
+  <script src="{% static 'patient/js/main.js' %}"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,159 @@
+{% load staticfiles %}
+{% static "" as img %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>{{ user.name }} Pharmacy</title>
+	<link rel="icon" href="{% static 'assets/img/logo.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'patient/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'patient/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'patient/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'patient/css/ionicons.min.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'patient/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'patient/css/data.css' %}">
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+<style>
+.imgs {
+	margin-left:1000px;
+	border-radius:15px;
+}
+table, th, td {
+  border: 2px solid #ba2424;
+  text-align: center;
+}
+table {
+  counter-reset: section;
+}
+
+.count:before {
+  counter-increment: section;
+  content: counter(section);
+}
+@media print {
+    .hidden-print,
+    .hidden-print * {
+        display: none !important;
+    }
+}
+.button12 {
+	background: #3e64ff;
+    border: 1px solid #3e64ff !important;
+    color: #fff !important;
+    margin-left: 500px;
+}
+</style>
+</head>
+
+<body>
+		<div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-4 col-3">
+                        <h4 class="page-title">Pharmacy</h4>
+                    </div>
+                </div>
+ <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+		<a class="cta-link element-animate">
+      <!-- <span class="sub-heading">Ready to Visit?</span> -->
+			<table id="tb2" style="width:100%">
+<h1 class="h1">Medicine List</h1>
+<br><br>
+<thead>
+    <tr>
+	<th>No.</th><th>Id</th><th>Patient</th><th>Doctor &nbsp;&nbsp;&nbsp;</th><th>Hospital &nbsp;&nbsp;&nbsp;</th><th>Disease</th><th>Timing &nbsp;&nbsp;&nbsp;</th><th>Rate</th>
+    </tr>
+    </thead>
+<tbody>
+    {% for i in data %}
+	
+        <tr>
+		<form action="#" method="post">{% csrf_token %}
+		<td class="count"></td>
+		<td>
+			<input type="text" name="date" style="display:none;" value="{{ i.f_date }}">&nbsp;{{ i.f_date }}
+        </td>
+		<td>
+			<input type="text" name="date" style="display:none;" value="{{ i.e_date }}">&nbsp;{{ i.e_date }}
+        </td>
+		<td>
+            <input type="text" name="out" value="out" style="display:none;">
+			<input type="text" name="gender" value="{{ i.med }}" style="display:none;">{{ i.med }}
+        </td>
+		<td>
+			<input type="text" name="name" style="display:none;" value="{{ i.disease }}">&nbsp;{{ i.disease }}
+        </td>
+        <td>
+            <input type="text" name="age" value="{{ i.stock }}" style="display:none;">&nbsp;{{ i.stock }}
+		</td>
+        </tr>
+		</form>
+    {% endfor %}
+</tbody>
+</table>
+<div class="m-t-20 text-center">
+       <button class="button12" id="btnPrint">Print</button>
+ </div>
+        <script>
+		const $btnPrint = document.querySelector("#btnPrint");
+		$btnPrint.addEventListener("click", () => {
+		window.print();
+		});</script>
+  </div>
+</section>
+    </div>
+    </div>
+	<br></br>
+<footer class="ftc">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made With <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="{% url 'index' %}" target="_blank">team TOC</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+    </footer>
+    <div class="sidebar-overlay" data-reff=""></div>
+	<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/js/Chart.bundle.js' %}"></script>
+    <script src="{% static 'assets/js/chart.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+	
+	<script src="{% static 'patient/js/jquery.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'patient/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'patient/js/aos.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'patient/js/scrollax.min.js' %}"></script>
+  <script src="{% static 'patient/js/main.js' %}"></script>
+
+</body>
+
+</html>
