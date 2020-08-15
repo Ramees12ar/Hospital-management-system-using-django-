@@ -1,0 +1,149 @@
+/* iCheck plugin Line skin, green
+----------------------------------- */
+.icheckbox_line-green,
+.iradio_line-green {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+  padding: 5px 5px 5px 18px;
+    font-size: 13px;
+    line-height: 17px;
+ color: #666;
+   background: #ccc none repeat scroll 0 0;
+    border: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;margin-bottom: 5px;margin-right: 5px;margin-top: 0;
+    margin-bottom: 5px;
+  margin-right: 5px;
+  margin-top: 0;
+ width: 80px;
+}
+    .icheckbox_line-green .icheck_line-icon,
+    .iradio_line-green .icheck_line-icon {
+        position: absolute;
+        top: 50%;
+        left: 13px;
+        width: 13px;
+        height: 11px;
+        margin: -5px 0 0 0;
+        padding: 0;
+        overflow: hidden;
+        background: no-repeat;
+        border: none;
+    }
+    .icheckbox_line-green.hover,
+    .icheckbox_line-green.checked.hover,
+    .iradio_line-green.hover {
+        background: #24AA7A;
+    }
+    .icheckbox_line-green.checked,
+    .iradio_line-green.checked {
+        background: #5F5F5F
+    }
+        .icheckbox_line-green.checked .icheck_line-icon,
+        .iradio_line-green.checked .icheck_line-icon {
+            background-position: -15px 0;
+        }
+    .icheckbox_line-green.disabled,
+    .iradio_line-green.disabled {
+        background: #89E6C4;
+        cursor: default;
+		 color: #777;
+    }
+        .icheckbox_line-green.disabled .icheck_line-icon,
+        .iradio_line-green.disabled .icheck_line-icon {
+            background-position: -30px 0;
+        }
+    .icheckbox_line-green.checked.disabled,
+    .iradio_line-green.checked.disabled {
+        background: #89E6C4;
+    }
+        .icheckbox_line-green.checked.disabled .icheck_line-icon,
+        .iradio_line-green.checked.disabled .icheck_line-icon {
+            background-position: -45px 0;
+        }
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi), (min-resolution: 1.25dppx) {
+    .icheckbox_line-green .icheck_line-icon,
+    .iradio_line-green .icheck_line-icon {
+        background-image: url(line@2x.png);
+        -webkit-background-size: 60px 13px;
+        background-size: 60px 13px;
+  margin-bottom: 5px;
+    margin-right: 5px;
+    margin-top: 0;   }
+}
+
+
+/*Custom CSS*/
+
+
+
+#upload {
+    background: #f2f2f2 none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    color: #284685;
+    cursor: pointer !important;
+    font-family: "titilliumlight","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    padding: 6px 15px;
+    text-align: center;
+    width: 100%;
+}
+ul#files{ list-style:none; padding:0; margin:0; }
+ul#files li{ padding:10px; margin-bottom:2px; width:200px; float:left; margin-right:10px;}
+ul#files li img{ max-width:180px; max-height:150px; }
+
+
+.success {
+    background: none;
+    border: 1px solid #dedede;
+}
+.errors{
+	 background: none;
+	  border: 1px solid red; }
+
+#files .success {
+    margin-bottom: 10px;
+}
+
+.icheckbox_line-green.checked, .iradio_line-green.checked {
+    background: #006851 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.row.completed {
+    background: #eee none repeat scroll 0 0;
+	  border-bottom: 1px dashed #ccc;
+}
+
+.row.completed:last-child{
+	 border-bottom: 0px;
+	}
+
+.row.completed .sub-head {
+    color: #1d826a;
+    padding-left: 34px;
+    position: relative;
+}
+.row.completed .sub-head:after{
+  background: url("../images/steps-complete.png") no-repeat scroll 0 0;
+    content: "";
+    display: block;
+    height: 24px;
+    left: 0;
+    position: absolute;
+    top: -2px;
+    width: 24px;
+	}
+  #TotalFee
+  {
+    color: rgb(29, 130, 106);
+    padding-bottom: 10px;
+    padding-left: 10px;
+  }
