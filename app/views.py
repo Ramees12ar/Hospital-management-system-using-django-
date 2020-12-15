@@ -8,7 +8,6 @@ from django.core.mail import EmailMessage
 from django.core import serializers
 from django.template import RequestContext
 from datetime import datetime
-from django.shortcuts import render_to_response
 from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse, Http404
 import random
