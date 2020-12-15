@@ -9,5 +9,5 @@ secure-smtplib==0.1.1
 random2==1.0.1
 PyQRCode==1.2.1
 opencv-python==4.4.0.46
-httplib2==0.14.0
+httplib2==0.18.0
 DateTime==4.3
