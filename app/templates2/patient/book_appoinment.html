@@ -1,0 +1,467 @@
+{% load static %}
+{% static "" as img %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ user.name }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{% static 'index/img/patient.png' %}" type="image/x-icon">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'patient/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'patient/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'patient/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'patient/css/ionicons.min.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'patient/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'patient/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'patient/css/data.css' %}">
+	
+	<link rel="stylesheet" href="{% static 'home/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/jquery.timepicker.css' %}">
+	
+<script>
+function Validate() {
+if ($(('#sel_loc')).val() == null){
+    alert('Please select location')
+	$( '#sel_loc' ).focus();
+            return false;
+        }
+if ($(('#sel_hosp')).val() == null) {
+    alert('Please select Hospital')
+	$( '#sel_hosp' ).focus();
+            return false;
+        }
+if ($(('#spl')).val() == null){
+    alert('Please select Department')
+	$( '#spl' ).focus();
+            return false;
+        }
+if ($(('#dr')).val() == null) {
+    alert('Please select your Doctor')
+	$( '#dr' ).focus();
+            return false;
+        }
+if ($(('#datess')).val() == null) {
+    alert('Please select your appoinment date')
+	$( '#datess' ).focus();
+            return false;
+		}
+if ($(('#appointment_tyme')).val() == null) {
+    alert('Please select your appoinment time')
+	$( '#appointment_tyme' ).focus();
+            return false;
+        }
+    }
+</script>
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+	  
+	  
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html"><span>T</span>ouch of Care</a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="{% url 'pat_hm' %}" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>My Medical Timeline</span></a></li>
+			  <li class="nav-item dropdown">
+                <a class="nav-link" href="{% url 'pt_hm_book' %}" id="dropdown04" style="color: #007bff;">Booking</a>
+              </li>
+	          <li class="nav-item dropdown">
+                <a class="nav-link" href="{% url 'vw_dr' %}" id="dropdown04" style="color: #007bff;">Appointments</a>
+              </li>
+			  <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+	          <li class="nav-item"><a href="{% url 'out' %}" class="nav-link"><span>Log Out</span></a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  <section class="section">
+      <div class="overlay"></div>
+      <div class="container">
+			<form role="form" id="app" class="middle" action="{% url 'book_now' %}" style="display: inline-block;" method="post">{% csrf_token %}
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+								<label for="appointment_name" class="form-group">Location</label>
+								<select id="sel_loc" name="loc" class="form-control" style="height:200px;" pattern="[A-Z]" required>
+									<option selected disabled>SELECT</option>
+									<option value="Alappuzha">Alappuzha</option>
+									<option value="Ernakulam">Ernakulam </option>
+									<option value="Idukki">Idukki</option>
+									<option value="Kannur">Kannur</option>
+									<option value="Kasaragod">Kasaragod</option>
+									<option value="Kollam">Kollam</option>
+									<option value="Kottayam">Kottayam</option>
+									<option value="Kozhikode">Kozhikode </option>
+									<option value="Malappuram">Malappuram</option>
+									<option value="Palakkad">Palakkad</option>
+									<option value="Pathanamthitta">Pathanamthitta</option>   
+									<option value="Thiruvananthapuram">Thiruvananthapuram</option>
+									<option value="Thrissur">Thrissur</option>
+									<option value="Wayanad">Wayanad</option>   
+								</select>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<label for="appointment_date" class="form-group">Hospitals</label>
+											<select id="sel_hosp" name="selt_hosp" class="form-control input-md" pattern="[A-Z]" required>
+												<option selected disabled>SELECT</option>
+											</select>
+								</div>
+							</div>
+
+								<div class="row">
+									<div class="col-xs-6 col-sm-6 col-md-6">
+											<label for="appointment_date" class="form-group">Departments</label>
+												<div class="input">
+													<select id="spl" name="departmnt" class="form-control input-md" pattern="[A-Z]" required>
+														<option selected disabled>SELECT</option>
+													</select>								
+												</div>
+									</div>
+											<div class="col-xs-6 col-sm-6 col-md-6">
+													<label for="appointment_time" class="form-group">Doctors</label>
+														<div class="input">
+															<select id="dr" name="dr" class="form-control input-md" pattern="[A-Z]" required>
+															<option selected disabled>SELECT</option>
+															</select>								
+														</div>
+											</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-xs-6 col-sm-6 col-md-6">
+											<div class="form-group">
+												<label for="appointment_date" class="form-group">Date</label>
+												<div class="input">
+													<input id="datess" placeholder="MM/DD/YYYY" autocomplete="off" data-provide="datepicker" class="form-control" name="appointment_dt" style="background-color:white;" required>
+												</div>    
+											</div>    
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6">
+										<label for="appointment_date" class="form-group">Time</label>
+											<div class="input">
+												<select required id="appointment_tyme" name="appoint_tym" autocomplete="off" class="form-control" required>
+													<option selected disabled>SELECT</option>
+													<option value="9AM to 10AM">9AM to 10AM</option>
+													<option value="10AM to 11AM">10AM to 11AM</option>
+													<option value="11AM to 12PM">11AM to 12PM</option>
+													<option value="12PM to 1PM">12PM to 1PM</option>
+													<option value="2PM to 3PM">2PM to 3PM</option>
+													<option value="3PM to 4PM">3PM to 4PM</option>
+													<option value="4PM to 5PM">4PM to 5PM</option>
+													<option value="5PM to 6PM">5PM to 6PM</option> 
+												</select>                  
+											</div>
+									</div>
+									
+								</div>
+										
+										<div class="form-group">
+										<input type="submit" value="Book Now" id="bkinggg" class="button" onclick="return Validate()">
+										</div>
+									
+						</form>
+					</div>
+				</section>
+
+    <section class="ftco-section ftco-no-pb goto-here" id="resume-section">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-3">
+				    <nav id="navi">
+					    <ul>
+					      <li><a href="#page-1">My Medical Prescription</a></li>
+					      <li><a href="#page-2">My Lab Results</a></li>
+					      
+					    </ul>
+					  </nav>
+					</div>
+					
+					
+					<div class="col-md-9">
+					
+					  <div id="page-1" class= "page one">
+					  	<h2 class="heading">My Medical Prescription</h2>
+					    <div class="resume-wrap d-flex ftco-animate">
+					    	<div class="icon d-flex align-items-center justify-content-center">
+					    		<span class="flaticon-ideas"></span>
+					    	</div>
+					    	<div class="text pl-3">
+		    					<span class="date">2020-</span>
+		    					<h2>View Prescription</h2>
+								 <p class="mb-0"><a href="{% url 'pt_pre' %}" class="btn btn-primary py-3 px-5">Click here </a></p>
+	    					</div>
+	    				</div>
+					  </div>
+					  
+
+					  <div id="page-2" class= "page two">
+					  	<h2 class="heading">My Lab Results</h2>
+	    				<div class="resume-wrap d-flex ftco-animate">
+	    					<div class="icon d-flex align-items-center justify-content-center">
+					    		<span class="flaticon-ideas"></span>
+					    	</div>
+					    	<div class="text pl-3">
+		    					<span class="date">2020-</span>
+		    					<h2>View Lab Results</h2>
+		    					<p class="mb-0"><a href="{% url 'pt_test' %}" class="btn btn-primary py-3 px-5">Click here </a></p>
+		    				</div>
+	    				</div>
+					  </div>
+					  
+					  
+					</div>
+			  </div>
+    	</div>
+    </section>
+
+    
+
+    <section class="ftco-section ftco-hireme img" style="background-image: url('/static/home/images/bg_1.jpg')">
+    	<div class="overlay"></div>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-7 ftco-animate text-center">
+						<h2><span>Touch Of Care</span> <br> Provide Best Quality Health Care For You</h2>
+					</div>
+				</div>
+			</div>
+		</section>
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Contact</h1>
+            <h2 class="mb-4">Contact Me</h2>
+          </div>
+        </div>
+
+        <div class="row d-flex contact-info mb-5">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box text-center p-4 shadow">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-map-signs"></span>
+          		</div>
+          		<div>
+	          		<h3 class="mb-4">Place</h3>
+		            <p>{{user.place}}</p>
+		          </div>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box text-center p-4 shadow">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-phone2"></span>
+          		</div>
+          		<div>
+	          		<h3 class="mb-4">Contact Number</h3>
+		            <p><a href="tel://1234567920">{{user.ph_no}}</a></p>
+	            </div>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box text-center p-4 shadow">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-paper-plane"></span>
+          		</div>
+          		<div>
+	          		<h3 class="mb-4">Email Address</h3>
+		            <p><a href="mailto:">{{user.email}}</a></p>
+		          </div>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box text-center p-4 shadow">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-globe"></span>
+          		</div>
+          		<div>
+	          		<h3 class="mb-4">Website</h3>
+		            <p><a href="#">TouchOfCare.com</a></p>
+	            </div>
+	          </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </section>
+		
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">About</h2>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Services</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Doctor Appointments</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Hospitals</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Articles</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">KMEA Egineering College, Mochamkulam, Edathala, Aluva, Kerala 682021</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">0484 2366237</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">admin.toc@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made With <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">team TOC</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>
+  
+  
+  <script src="{% static 'patient/js/jquery.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'patient/js/popper.min.js' %}"></script>
+  <script src="{% static 'patient/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'patient/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'patient/js/aos.js' %}"></script>
+  <script src="{% static 'patient/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'patient/js/scrollax.min.js' %}"></script>
+  <script src="{% static 'patient/js/main.js' %}"></script>
+  
+  <script src="{% static 'home/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'home/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'home/js/main.js' %}"></script>
+
+ 	<script>
+var date1 = new Date();
+date1.setDate(date1.getDate());
+$('#datess').datepicker({ 
+    startDate: date1
+});
+</script>
+<script>
+$(document).ready(function(){
+	<!-- alert("Booking"); -->
+	$("#sel_loc").on('change', function(){
+	<!-- alert($('#sel_loc').val()); -->
+		$.ajax({	
+			url:'/list_hosp/',
+			data:{"loc":$('#sel_loc').val()},
+		success:function(data){	
+<!-- alert("ok"); -->
+	$('#sel_hosp').empty()
+			$('#sel_hosp').append('<option selected disabled>SELECT</option>')
+
+        	for(var i=0;i<data.dt1.length;i++)
+        	{
+			<!-- alert(data.dt1[i].fields.hosp_nm); -->
+			$('#sel_hosp').append('<option value='+data.dt1[i].pk+'> '+data.dt1[i].fields.name+'</option>');
+			}
+		
+			}
+		});
+	});
+
+	$("#sel_hosp").on('change', function(){
+		<!-- alert($('#sel_hosp').val()); -->
+		$.ajax({	
+			url:'/list_dept/',
+			data:{"hosp_id":$('#sel_hosp').val()},
+		success:function(data){	
+var arr1 = [];
+var i = 0;
+for (i = 0;i<data.dt1.length; i++){
+  arr1.push(data.dt1[i].fields.special)
+}
+/*alert("hi");
+alert(arr1.length);
+alert("ok");*/
+	$('#spl').empty()
+			$('#spl').append('<option selected disabled>SELECT</option>')
+  var dept = arr1.filter(function(elem, index, self) {
+      return index === self.indexOf(elem);
+  });
+   
+  console.log(dept);
+
+   	for(var i=0;i<dept.length;i++)
+        	{
+			<!-- alert(dept[i]); -->
+			$('#spl').append('<option value='+dept[i]+'> '+dept[i]+'</option>');
+			} 
+		
+			}
+		});
+	});
+	$("#spl").on('change', function(){
+		<!-- alert($('#spl').val()); -->
+		<!-- alert($('#sel_hosp').val()); -->
+		$.ajax({	
+			url:'/list_dr/',
+			data:{"dept":$('#spl').val(),"hosp_id":$('#sel_hosp').val()},
+		success:function(data){	
+<!-- alert("ok"); -->
+	$('#dr').empty()
+			$('#dr').append('<option selected disabled>SELECT</option>')
+
+        	for(var i=0;i<data.dt1.length;i++)
+        	{
+			<!-- alert(data.dt1[i].pk); -->
+			$('#dr').append('<option value='+data.dt1[i].pk+'> '+data.dt1[i].fields.name+'</option>');
+			}
+		
+			}
+		});
+	});
+});
+</script>
+    
+  </body>
+</html>
