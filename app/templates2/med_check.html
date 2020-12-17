@@ -1,0 +1,235 @@
+{% load static %}
+{% static "" as img %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+
+    <title>Medicine Availability Checker</title>
+	<link rel="icon" href="{% static 'index/img/icon.png' %}" type="image/x-icon">
+	
+    <!-- css -->
+    <link href="{% static 'index/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'index/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="{% static 'index/plugins/cubeportfolio/css/cubeportfolio.min.css' %}">
+	<link href="{% static 'index/css/nivo-lightbox.css' %}" rel="stylesheet" />
+	<link href="{% static 'index/css/nivo-lightbox-theme/default/default.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'index/css/owl.carousel.css' %}" rel="stylesheet" media="screen" />
+    <link href="{% static 'index/css/owl.theme.css' %}" rel="stylesheet" media="screen" />
+	<link href="{% static 'index/css/animate.css' %}" rel="stylesheet" />
+    <link href="{% static 'index/css/style.css' %}" rel="stylesheet">
+	<!-- boxed bg -->
+	<link id="bodybg" href="{% static 'index/bodybg/bg1.css' %}" rel="stylesheet" type="text/css" />
+	<!-- template skin -->
+	<link id="t-colors" href="{% static 'index/color/default.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'home/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/jquery.timepicker.css' %}">
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<style>
+.imgs {
+	margin-left:1000px;
+	border-radius:15px;
+}
+table, th, td {
+  border: 2px solid #ba2424;
+  text-align: center;
+  margin-top:-40px;
+}
+table {
+  counter-reset: section;
+}
+
+td {
+ color: #000;
+ font-weight: bold;
+}
+
+.count:before {
+  counter-increment: section;
+  content: counter(section);
+}
+</style>
+<script>
+function Validate() {
+if ($(('#sel_loc')).val() == null){
+    alert('Please select location')
+	$( '#sel_loc' ).focus();
+            return false;
+        }
+	}
+</script>
+
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+
+<div id="wrapper">
+	
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="top-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-md-6">
+						<p class="bold text-left">24*7 services </p>
+					</div>
+					<div class="col-sm-6 col-md-6">
+						<p class="bold text-right">Call us 0484 2578 456</p>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="container navigation">
+		
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="{% url 'index' %}">Touch Of <span>Care</span>  </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+			  <ul class="nav navbar-nav">
+				<li ><a href="{% url 'index' %}">Home</a></li>
+				<li><a href="{% url 'login' %}">login</a></li>
+				<li><a href="{% url 'hos_list' %}">Hospitals</a></li>
+				<li class="active"><a href="{% url 'stk_med' %}">Medicines</a></li>
+			  </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	
+
+	<!-- Section: intro -->
+		<div class="intro-contents">
+		<br></br>
+		<div class="avail">
+			<form action="{% url 'medchecker' %}" method="post">{% csrf_token %}
+            <div class="col-lg-8 offset-lg-2">
+				<div class="raw">
+					<div class="col-sm-6">
+						<div class="form-group">
+                            <label>District :</label>
+							<select id="sel_loc" name="loc" class="form-control input-md" required>
+									<option selected disabled>SELECT</option>
+									<option value="Alappuzha">Alappuzha</option>
+									<option value="Ernakulam">Ernakulam </option>
+									<option value="Idukki">Idukki</option>
+									<option value="Kannur">Kannur</option>
+									<option value="Kasaragod">Kasaragod</option>
+									<option value="Kollam">Kollam</option>
+									<option value="Kottayam">Kottayam</option>
+									<option value="Kozhikode">Kozhikode </option>
+									<option value="Malappuram">Malappuram</option>
+									<option value="Palakkad">Palakkad</option>
+									<option value="Pathanamthitta">Pathanamthitta</option>   
+									<option value="Thiruvananthapuram">Thiruvananthapuram</option>
+									<option value="Thrissur">Thrissur</option>
+									<option value="Wayanad">Wayanad</option>   
+								</select>
+                        </div>
+						<div class="form-group">
+							<form>
+								<label for="product">Medicine :</label>
+								<input type="text" name="product" id="product" class="form-control input-md" required>
+							</form>
+						</div>
+						<div class="form-groups">
+							<input type="submit" class="search" value="Search">
+							<br></br>
+						</div>
+					</div>
+				</div>
+				</div>
+			</form>
+		</div>
+		</div>	
+<div class="page-wrap">
+            <div class="content">
+		 <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+		<a class="cta-link element-animate">
+      <!-- <span class="sub-heading">Ready to Visit?</span> -->
+			<table id="tb2" style="width:100%">
+<thead>
+    <tr>
+	<th>No.</th><th>Pharmacy Name</th><th>District</th><th>Phone</th><th>Address</th><th>Medicine</th><th>Status</th>
+    </tr>
+    </thead>
+<tbody>
+    {% for i in data %}
+        <tr>
+		<form>
+		<td class="count"></td>
+		<td>
+			<input type="text" name="date" style="display:none;" value="{{ i.date }}">&nbsp;{{ i.hos }}
+        </td>
+		<td>
+			<input type="text" name="name" style="display:none;" value="{{ data.name }}">&nbsp;{{ i.place }}
+        </td>
+		<td>
+			<input type="text" name="name" style="display:none;" value="{{ data.name }}">&nbsp;{{ i.ph_no }}
+        </td>
+		<td>
+			<input type="text" name="name" style="display:none;" value="{{ data.name }}">&nbsp;{{ i.address }}
+        </td>
+		<td>
+			<input type="text" name="dis" style="display:none;" value="{{ i.disease }}">&nbsp;{{ i.med }}
+        </td>
+        <td>
+            <input type="text" name="med" value="{{ i.med }}" style="display:none;">&nbsp;{{ status }}
+		</td>
+        </tr>
+		</form>
+    {% endfor %}
+</tbody>
+</table>
+
+  </div>
+</section>
+</div>
+</div>		
+</div>
+<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+
+	<!-- Core JavaScript Files -->
+    <script src="{% static 'index/js/jquery.min.js' %}"></script>	 
+    <script src="{% static 'index/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'index/js/jquery.easing.min.js' %}"></script>
+	<script src="{% static 'index/js/wow.min.js' %}"></script>
+	<script src="{% static 'index/js/jquery.scrollTo.js' %}"></script>
+	<script src="{% static 'index/js/jquery.appear.js' %}"></script>
+	<script src="{% static 'index/js/stellar.js' %}"></script>
+	<script src="{% static 'index/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js' %}"></script>
+	<script src="{% static 'index/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'index/js/nivo-lightbox.min.js' %}"></script>
+    <script src="{% static 'index/js/custom.js' %}"></script>
+	
+	<script src="{% static 'home/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'home/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'home/js/main.js' %}"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$(function () {
+    $("#product").autocomplete({
+        source: '{% url 'autocomplete' %}',
+        minLength: 1
+    });
+});
+</script>
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+{% load static %}
+{% static "" as img %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/logo.png' %}">
+    <title>Add Doctor</title>
+    <link rel="icon" href="{% static 'assets/img/logo.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap-datetimepicker.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+    <div class="main-wrapper">
+		<div class="header">
+			<div class="header-left">
+				<a href="index.html" class="logo">
+					<img src="{% static 'assets/img/logo.png' %}" width="35" height="35" alt=""> <span>Touch of Care</span>
+				</a>
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+                <li class="nav-item dropdown has-arrow">
+                    <a href="{% url 'main' %}" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img">
+							<img class="rounded-circle" src="{% static 'assets/img/user.jpg' %}" width="24" alt="Admin">
+							<span class="status online"></span>
+						</span>
+						<span>{{ hos.name}}</span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">My Profile</a>
+						<a class="dropdown-item" href="{% url 'edit_hos' %}">Edit Profile</a>
+						<a class="dropdown-item" href="#">Settings</a>
+						<a class="dropdown-item" href="{% url 'out' %}">Logout</a>
+					</div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="{% url 'edit_hos' %}">Edit Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="{% url 'out'%}">Logout</a>
+                </div>
+            </div>
+        </div>
+		<div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+                        <li>
+                            <a href="{% url 'hm_hosp' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+						<li class="active">
+                            <a href="{% url 'hos_doc_vw' %}"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'hos_phar_vw' %}"><i class="fa fa-medkit"></i> <span>Pharmacy</span></a>
+                        </li>
+						<li>
+                            <a href="{% url 'hos_lab_vw' %}"><i class="fa fa-flask"></i> <span>Laboratory</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title">Add Doctor</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form action="{% url 'doc_h_add' %}" method="post">{% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Doctor Name <span class="text-danger">*</span></label>
+                                        <input class="form-control" name="name" type="text" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Location</label>
+										<select name="loc" class="form-control" style="background-color: #fff;color: #000;" required>
+												<option selected disabled>Select Location</option>
+												<option value="Alappuzha">Alappuzha</option>
+												<option value="Ernakulam">Ernakulam </option>
+												<option value="Idukki">Idukki</option>
+												<option value="Kannur">Kannur</option>
+												<option value="Kasaragod">Kasaragod</option>
+												<option value="Kollam">Kollam</option>
+												<option value="Kottayam">Kottayam</option>
+												<option value="Kozhikode">Kozhikode </option>
+												<option value="Malappuram">Malappuram</option>
+												<option value="Palakkad">Palakkad</option>
+												<option value="Pathanamthitta">Pathanamthitta</option>   
+												<option value="Thiruvananthapuram">Thiruvananthapuram</option>
+												<option value="Thrissur">Thrissur</option>
+												<option value="Wayanad">Wayanad</option>   
+										</select>
+                                    </div>
+                                </div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Date of Birth</label>
+                                        <div class="cal-icon">
+                                            <input type="text" name="dob" class="form-control datetimepicker">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+									<div class="form-group gender-select">
+										<label class="gen-label">Gender:</label>
+										<div class="form-check-inline">
+											<label class="form-check-label">
+												<input type="radio" name="gender" value="Male" class="form-check-input">Male
+											</label>
+										</div>
+										<div class="form-check-inline">
+											<label class="form-check-label">
+												<input type="radio" name="gender" value="Female" class="form-check-input">Female
+											</label>
+										</div>
+									</div>
+                                </div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Qualification<span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="qual" autocomplete="off" required>
+                                    </div>
+                                </div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Department</label>
+											<select name="dep" class="form-control" style="background-color: #fff;color: #000;" required>
+													<option selected disabled>Add Department</option>
+													<option value="Cardiology">Cardiology</option>
+													<option value="ENT">ENT</option>
+													<option value="Geriatrics">Geriatrics</option>
+													<option value="Gynaecology">Gynaecology</option>
+													<option value="Paediatrics">Paediatrics</option>
+													<option value="Neurology">Neurology</option>
+													<option value="Oncology">Oncology</option>
+													<option value="Opthalmology">Opthalmology</option>
+													<option value="Dengist">Dengist</option>
+													<option value="Orthopedics">Orthopedics</option>
+													<option value="Urology">Urology</option>
+													<option value="Psychiatry">Psychiatry</option>
+													<option value="Surgeon">Surgeon</option>
+											</select>
+                                    </div>
+                                </div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Experience<span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="exp" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="email" autocomplete="off" name="email" required>
+                                    </div>
+                                </div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Username <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" autocomplete="off" name="uname" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 4-8 characters" maxlength="8" size="8" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input class="form-control" type="password" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&~?]).{6,}"
+  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 6 or more characters" name="pass" id="pwd" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Confirm Password</label>
+                                        <input class="form-control" id="cpwd" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Phone </label>
+                                        <input class="form-control" type="text" name="ph_no" pattern="[0-9]{10}" maxlength="10" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Add Doctor</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+<script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("pwd").value;
+        var confirmPassword = document.getElementById("cpwd").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
+    <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/js/moment.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+</body>
+
+</html>

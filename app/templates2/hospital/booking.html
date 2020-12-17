@@ -1,0 +1,33 @@
+{% load static %}
+{% static "" as img %}
+<!DOCTYPE html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/upload.css' %}">
+	</head>
+	<body>
+	{% block content %}
+		<div class="wrapper">
+			<div class="container">
+    <h1>Scan QR code</h1>
+    <div class="upload-container">
+      <div class="border-container">
+        <div class="icons fa-4x">
+          <i class="fas fa-file-image" data-fa-transform="shrink-3 down-2 left-6 rotate--45"></i>
+          <i class="fas fa-file-alt" data-fa-transform="shrink-2 up-4"></i>
+          <i class="fas fa-file-pdf" data-fa-transform="shrink-3 down-2 right-6 rotate-45"></i>
+        </div>
+        <!--<input type="file" id="file-upload">-->
+		<form method="post" action="{% url 'pbooking' %}" enctype="multipart/form-data">
+		{% csrf_token %}
+			<input type="file" name="file" name="document">
+			<button type="submit" class="btn">Check</button>
+			<input type="text" name="pid" style="display:none;" value="{{ data.pid }}">
+			<input type="text" name="pat" style="display:none;" value="{{ data.pat }}">
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+	</body>
+</html>
