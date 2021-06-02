@@ -4,7 +4,7 @@ Pillow==7.1.0
 pyzbar==0.1.8
 simplejson==3.16.0
 virtualenv==20.0.35
-urllib3==1.25.8
+urllib3==1.26.5
 secure-smtplib==0.1.1
 random2==1.0.1
 PyQRCode==1.2.1
