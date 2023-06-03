@@ -95,7 +95,7 @@ def phar_reg(request):
             print("out lab is stored")
             if str(h)=="out":
                 email = EmailMessage('Verification needed','Hi'+' '+str(c)+','+'\n'+'mail the documents'+'\n'+'1. Pharmacy certificates'+'\n'+'2. owner name and address'+'\n'+'3. Pharmacy address', to=[e])
-                email.send()
+                # email.send()()
                 return HttpResponse("<script>alert('successfully Registered. email the concerned document and wait for admin approval');window.location.href='/index/';</script>")
         else:
             return HttpResponse("<script>alert('Already Registered. Pls login with username and password');window.location.href='/login/';</script>")
@@ -156,7 +156,7 @@ def aprove_pha(request):
                 print ("registered")
                 if str(h)=="out":
                     email = EmailMessage('Status of Registration','Hi'+' '+str(c)+','+'\n'+'\n'+'Your pharmacy account has been activated. Please login to continue'+'\n'+'user name is:'+' '+str(f)+'\n'+'password is:'+' '+str(g), to=[e])
-                    email.send()
+                    # email.send()()
                 return  HttpResponse("<script>alert('Registration Successful');window.location.href='/main/';</script>")
             else:
                  return HttpResponse("<script>alert('User already exist, please register with another username');window.location.href='/index/';</script>")
@@ -330,7 +330,7 @@ def hosp_reg(request):
             print("out hosp is stored")
             if str(r)=="out":
                 email = EmailMessage('Verification needed','Hi'+' '+str(c)+','+'\n'+'mail the documents' +'\n'+ '1. Hospital certificates'+ '\n'+'2. owner name and address' +'\n'+'3. Hospital address', to=[e])
-                email.send()
+                # email.send()()
                 return HttpResponse("<script>alert('successfully Registered. mail the concern documents and wait for admin approval');window.location.href='/index/';</script>")
         else:
             return HttpResponse("<script>alert('Already Registered. Pls login with username and password');window.location.href='/login/';</script>")
@@ -396,7 +396,7 @@ def aprove_hos(request):
                 ob.delete()
                 if str(h)=="out":
                     email = EmailMessage('Status of Registration','Hi'+' '+str(c)+','+'\n'+'\n'+'Your Hospital account has been activated. Please login to continue'+'\n'+'user name is:' + str(f) +'\n'+'password is:' +str(g), to=[e])
-                    email.send()
+                    # email.send()()
                     print ("registered")
                     return  HttpResponse("<script>alert('Registration Successful');window.location.href='/main/';</script>")
             else:
@@ -440,7 +440,7 @@ def lab_reg(request):
             print("out lab is stored")
             if(str(h)=="out"):
                 email = EmailMessage('Verification needed','Hi'+' '+str(c)+','+'\n'+'mail the documents' +'\n'+ '1. Laboratory certificates'+ '\n'+'2. owner name and address' +'\n'+'3. Laboratory address', to=[e])
-                email.send()
+                # email.send()()
                 return HttpResponse("<script>alert('successfully Registered. email the concerned document and wait for admin approval');window.location.href='/index/';</script>")
         else:
             return HttpResponse("<script>alert('Already Registered. Pls login with username and password');window.location.href='/login/';</script>")
@@ -500,7 +500,7 @@ def aprove_lab(request):
                 ob.delete()
                 if str(h)=="out":
                     email = EmailMessage('Status of Registration','Hi'+' '+str(c)+','+'\n'+'\n'+'Your Laboratory account has been activated. Please login to continue'+'\n'+'user name is:'+' '+str(f)+'\n'+'password is:'+' '+str(g), to=[e])
-                    email.send()
+                    # email.send()()
                 print ("registered")
                 return  HttpResponse("<script>alert('Registration Successful');window.location.href='/main/';</script>")
             else:
@@ -775,7 +775,7 @@ def reset(request):
         ob=patient_regis.objects.filter(email=b)
         if (ob.count()==1):
             email = EmailMessage('Password for your account','you account username and password are'+'\n'+'username :-'+' '+str(c)+'\n'+'Your account password is :-'+' '+str(d), to=[str(b)])
-            email.send()
+            # email.send()()
             return HttpResponse("<script>alert('Your password will be sent to your provided email id');window.location.href='/login/';</script>")
         return HttpResponse("<script>alert('Your entered email is not registered email. please use registered email');window.location.href='/forget_pass/';</script>")
             
@@ -864,7 +864,7 @@ def adm_hosp(request):
             ob.save()
             print("registered")
             email = EmailMessage('Hospital Account activated','Hi'+' '+str(c)+','+'\n'+'\n'+'Your Hospital account is created'+'\n'+'USERNAME :'+str(f)+'\n'+'PASSWORD :'+str(g), to=[e])
-            email.send()
+            # email.send()()
             return HttpResponse("<script>alert('Hospital successfully added');window.location.href='/admin_hos/';</script>")
     return HttpResponse("<script>alert('Please login using admin username and password');window.location.href='/login/';</script>")
 def adm_phar(request):
@@ -896,7 +896,7 @@ def adm_phar(request):
                 )
             obj.save()
             email = EmailMessage('Pharmacy Account activated','Hi'+' '+str(c)+','+'\n'+'\n'+'Your Pharmacy account is created'+'\n'+'USERNAME :'+str(f)+'\n'+'PASSWORD :'+str(g), to=[e])
-            email.send()
+            # email.send()()
             print("registered")
             return HttpResponse("<script>alert('Pharmacy successfully added');window.location.href='/admin_pha/';</script>")
     return HttpResponse("<script>alert('Please login using admin username and password');window.location.href='/login/';</script>")
@@ -929,7 +929,7 @@ def adm_lab(request):
                 )
             obj.save()
             email = EmailMessage('Laboratory Account activated','Hi'+' '+str(c)+','+'\n'+'\n'+'Your Labouratory account is created'+'\n'+'USERNAME :'+str(f)+'\n'+'PASSWORD :'+str(g), to=[e])
-            email.send()
+            # email.send()()
             print("registered")
             return HttpResponse("<script>alert('lab successfully added');window.location.href='/admin_lab/';</script>")
     return HttpResponse("<script>alert('Please login using admin username and password');window.location.href='/login/';</script>")
@@ -991,7 +991,7 @@ def h_ad_delete(request):
     d=request.POST.get("id")
     if(c=="out"):
         email = EmailMessage('Status of Account', 'Your account has been .Terminated. Please contact concern department', to=[e])
-        email.send()
+        # email.send()()
     ob=hosp_regis.objects.filter(name=a,place=b,email=e)
     ob.delete()
     obj=login_tb.objects.filter(lid=d)
@@ -1006,7 +1006,7 @@ def l_ad_delete(request):
     d=request.POST.get("id")
     if(c=="out"):
         email = EmailMessage('Status of Account', 'Your account has been Terminated. Please contact concern department', to=[e])
-        email.send()
+        # email.send()()
     ob=lab_regis.objects.filter(name=a,place=b,email=e)
     ob.delete()
     obj=login_tb.objects.filter(lid=d)
@@ -1021,7 +1021,7 @@ def p_ad_delete(request):
     d=request.POST.get("id")
     if(c=="out"):
         email = EmailMessage('Status of Account', 'Your account has been Terminated. Please contact concern department', to=[e])
-        email.send()
+        # email.send()()
     ob=phar_regis.objects.filter(name=a,place=b,email=e)
     ob.delete()
     obj=login_tb.objects.filter(lid=d)
